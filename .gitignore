@@ -1,0 +1,8 @@
+/.git/
+dotfile_bk_*/
+.DS_Store
+*~
+*.swp
+codex/.codex/auth.json
+codex/.codex/sessions/
+_test_home/

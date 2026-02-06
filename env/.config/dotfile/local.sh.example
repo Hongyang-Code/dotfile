@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+#
+# Local machine overrides for this dotfiles repo.
+# Copy to: ~/.config/dotfile/local.sh
+#
+# This file is intentionally NOT tracked with secrets. Keep host-specific paths here.
+#
+# Examples:
+# export DOTFILE_CONDA_ROOT="/data4/lhy/anaconda"
+# export DOTFILE_CUDA_HOME="$HOME/cuda-12.6"
+# export DOTFILE_ZSH_BIN="/usr/bin/zsh"
+# export DOTFILE_ENABLE_VIMINFO="1"

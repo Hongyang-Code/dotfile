@@ -1,0 +1,49 @@
+# =================================================================
+#  SSH Proxy Configuration (Auto-detect & Manual Toggle)
+# =================================================================
+
+# 1. 定义配置变量 (修改这里即可一处生效)
+# ----------------------------------------
+export PROXY_PORT=10790   # <--- 改成你选定的服务器监听端口
+export PROXY_HOST="127.0.0.1"
+
+# 2. 定义开启/关闭代理的函数
+# ----------------------------------------
+function setproxy() {
+    # HTTP/HTTPS 代理
+    export http_proxy="http://${PROXY_HOST}:${PROXY_PORT}"
+    export https_proxy="http://${PROXY_HOST}:${PROXY_PORT}"
+    
+    # SOCKS5 代理 (推荐使用 socks5h 以解决 DNS 污染问题)
+    # 如果你的本地 Windows 代理不支持 SOCKS5，请把下面这行注释掉
+    export all_proxy="socks5h://${PROXY_HOST}:${PROXY_PORT}"
+    
+    # 这里的 no_proxy 用于指定不走代理的地址 (如内网 IP、localhost)
+    export no_proxy="localhost,127.0.0.1,::1,192.168.0.0/16,10.0.0.0/8"
+
+    echo "✅ Proxy Enabled (Port: ${PROXY_PORT})"
+}
+
+function unsetproxy() {
+    unset http_proxy
+    unset https_proxy
+    unset all_proxy
+    # no_proxy 通常不需要 unset，留着也没事，或者你也 unset 掉
+    
+    echo "❌ Proxy Disabled"
+}
+
+# 3. 登录时自动检测 (Auto-detect logic)
+# ----------------------------------------
+# 使用 nc (netcat) 检测端口是否监听
+# -z: 扫描模式 (不发送数据)
+# 2>/dev/null: 屏蔽错误信息 (比如 nc 未安装时的报错)
+if command -v nc >/dev/null 2>&1; then
+    if nc -z localhost $PROXY_PORT 2>/dev/null; then
+        setproxy  # 调用上面定义的函数
+        echo "   (Auto-detected SSH remote forwarding)"
+    fi
+else
+    # 如果没安装 nc，做一个简单的提示
+    echo "⚠️  'nc' command not found. Cannot auto-detect proxy."
+fi
