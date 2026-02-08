@@ -29,95 +29,6 @@
   # Zsh >= 5.1 is required.
   [[ $ZSH_VERSION == (5.<1->*|<6->.*) ]] || return
 
-  # The list of segments shown on the left. Fill it with the most important segments.
-  typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
-    # =========================[ Line #1 ]=========================
-    anaconda                # conda environment (https://conda.io/)
-    # virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
-    context                 # user@hostname
-    # os_icon               # os identifier
-    dir                     # current directory
-    vcs                     # git status
-    # =========================[ Line #2 ]=========================
-    newline                 # \n
-    prompt_char           # prompt symbol
-  )
-
-  # The list of segments shown on the right. Fill it with less important segments.
-  # Right prompt on the last prompt line (where you are typing your commands) gets
-  # automatically hidden when the input line reaches it. Right prompt above the
-  # last prompt line gets hidden if it would overlap with left prompt.
-  typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
-    # =========================[ Line #1 ]=========================
-    status                  # exit code of the last command
-    command_execution_time  # duration of the last command
-    background_jobs         # presence of background jobs
-    direnv                  # direnv status (https://direnv.net/)
-    # asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
-    pyenv                   # python environment (https://github.com/pyenv/pyenv)
-    # goenv                   # go environment (https://github.com/syndbg/goenv)
-    # nodenv                  # node.js version from nodenv (https://github.com/nodenv/nodenv)
-    # nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
-    # nodeenv                 # node.js environment (https://github.com/ekalinin/nodeenv)
-    # node_version          # node.js version
-    # go_version            # go version (https://golang.org)
-    # rust_version          # rustc version (https://www.rust-lang.org)
-    # dotnet_version        # .NET version (https://dotnet.microsoft.com)
-    # php_version           # php version (https://www.php.net/)
-    # laravel_version       # laravel php framework version (https://laravel.com/)
-    # java_version          # java version (https://www.java.com/)
-    # package               # name@version from package.json (https://docs.npmjs.com/files/package.json)
-    # rbenv                   # ruby version from rbenv (https://github.com/rbenv/rbenv)
-    # rvm                     # ruby version from rvm (https://rvm.io)
-    # fvm                     # flutter version management (https://github.com/leoafarias/fvm)
-    # luaenv                  # lua version from luaenv (https://github.com/cehoffman/luaenv)
-    # jenv                    # java version from jenv (https://github.com/jenv/jenv)
-    # plenv                   # perl version from plenv (https://github.com/tokuhirom/plenv)
-    # perlbrew                # perl version from perlbrew (https://github.com/gugod/App-perlbrew)
-    # phpenv                  # php version from phpenv (https://github.com/phpenv/phpenv)
-    # scalaenv                # scala version from scalaenv (https://github.com/scalaenv/scalaenv)
-    # haskell_stack           # haskell version from stack (https://haskellstack.org/)
-    # kubecontext             # current kubernetes context (https://kubernetes.io/)
-    # terraform               # terraform workspace (https://www.terraform.io)
-    # terraform_version     # terraform version (https://www.terraform.io)
-    # aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
-    # aws_eb_env              # aws elastic beanstalk environment (https://aws.amazon.com/elasticbeanstalk/)
-    # azure                   # azure account name (https://docs.microsoft.com/en-us/cli/azure)
-    # gcloud                  # google cloud cli account and project (https://cloud.google.com/)
-    # google_app_cred         # google application credentials (https://cloud.google.com/docs/authentication/production)
-    toolbox                 # toolbox name (https://github.com/containers/toolbox)
-    # nordvpn                 # nordvpn connection status, linux only (https://nordvpn.com/)
-    ranger                  # ranger shell (https://github.com/ranger/ranger)
-    # yazi                    # yazi shell (https://github.com/sxyazi/yazi)
-    # nnn                     # nnn shell (https://github.com/jarun/nnn)
-    # lf                      # lf shell (https://github.com/gokcehan/lf)
-    # xplr                    # xplr shell (https://github.com/sayanarijit/xplr)
-    vim_shell               # vim shell indicator (:sh)
-    midnight_commander      # midnight commander shell (https://midnight-commander.org/)
-    # nix_shell               # nix shell (https://nixos.org/nixos/nix-pills/developing-with-nix-shell.html)
-    # chezmoi_shell           # chezmoi shell (https://www.chezmoi.io/)
-    # vi_mode                 # vi mode (you don't need this if you've enabled prompt_char)
-    # vpn_ip                # virtual private network indicator
-    # load                  # CPU load
-    # disk_usage            # disk usage
-    # ram                   # free RAM
-    # swap                  # used swap
-    todo                    # todo items (https://github.com/todotxt/todo.txt-cli)
-    timewarrior             # timewarrior tracking status (https://timewarrior.net/)
-    taskwarrior             # taskwarrior task count (https://taskwarrior.org/)
-    per_directory_history   # Oh My Zsh per-directory-history local/global indicator
-    # cpu_arch              # CPU architecture
-    time                    # current time
-    # =========================[ Line #2 ]=========================
-    newline
-    # ip                    # ip address and bandwidth usage for a specified network interface
-    # public_ip             # public IP address
-    proxy                 # system-wide http/https/ftp proxy
-    # battery               # internal battery
-    # wifi                  # wifi speed
-    # example               # example user-defined segment (see prompt_example function below)
-  )
-
   # Defines character set used by powerlevel10k. It's best to let `p10k configure` set it for you.
   typeset -g POWERLEVEL9K_MODE=powerline
   # When set to `moderate`, some icons will have an extra space after them. This is meant to avoid
@@ -142,9 +53,9 @@
 
   # Connect left prompt lines with these symbols. You'll probably want to use the same color
   # as POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_FOREGROUND below.
-  typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX='%F{#C9B3E5}╭─'
-  typeset -g POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_PREFIX='%F{#C9B3E5}├─'
-  typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='%F{#C9B3E5}╰─'
+  typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX='%F{#D8CFA8}╭─'
+  typeset -g POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_PREFIX='%F{#D8CFA8}├─'
+  typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='%F{#D8CFA8}╰─'
   # Connect right prompt lines with these symbols.
   typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_SUFFIX=
   typeset -g POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_SUFFIX=
@@ -199,10 +110,6 @@
   ################################[ prompt_char: prompt symbol ]################################
   # Transparent background.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_BACKGROUND=
-  # Green prompt symbol if the last command succeeded.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND='#A7C7B1'
-  # Red prompt symbol if the last command failed.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND='#F2B6C8'
   # Default prompt symbol.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='❯'
   # Prompt symbol in command vi mode.
@@ -222,18 +129,11 @@
   ##################################[ dir: current directory ]##################################
   # Current directory background color.
   typeset -g POWERLEVEL9K_DIR_BACKGROUND='#B5A6D6'
-  # Default current directory foreground color.
-  typeset -g POWERLEVEL9K_DIR_FOREGROUND='#6A5D8B'
   # If directory is too long, shorten some of its segments to the shortest possible unique
   # prefix. The shortened directory can be tab-completed to the original.
   typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_unique
   # Replace removed segment suffixes with this symbol.
   typeset -g POWERLEVEL9K_SHORTEN_DELIMITER=
-  # Color of the shortened directory segments.
-  typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND='#6A5D8B'
-  # Color of the anchor directory segments. Anchor segments are never shortened. The first
-  # segment is always an anchor.
-  typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND='#6A5D8B'
   # Display anchor directory segments in bold.
   typeset -g POWERLEVEL9K_DIR_ANCHOR_BOLD=true
   # Don't shorten directories that contain any of these files. They are anchors.
@@ -362,15 +262,10 @@
   #####################################[ vcs: git status ]######################################
   # Version control background colors.
   typeset -g POWERLEVEL9K_VCS_CLEAN_BACKGROUND='#9FB8C8'
-  typeset -g POWERLEVEL9K_VCS_CLEAN_FOREGROUND='#6A5D8B'
   typeset -g POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='#C0A6D8'
-  typeset -g POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='#6A5D8B'
   typeset -g POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='#F2B6C8'
-  typeset -g POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='#6A5D8B'
   typeset -g POWERLEVEL9K_VCS_CONFLICTED_BACKGROUND='#D9A2A2'
-  typeset -g POWERLEVEL9K_VCS_CONFLICTED_FOREGROUND='#6A5D8B'
   typeset -g POWERLEVEL9K_VCS_LOADING_BACKGROUND='#9DB7D5'
-  typeset -g POWERLEVEL9K_VCS_LOADING_FOREGROUND='#6A5D8B'
 
   # Branch icon. Set this parameter to '\UE0A0 ' for the popular Powerline branch icon.
   typeset -g POWERLEVEL9K_VCS_BRANCH_ICON=
@@ -524,21 +419,18 @@
   # it will signify success by turning green.
   typeset -g POWERLEVEL9K_STATUS_OK=true
   typeset -g POWERLEVEL9K_STATUS_OK_VISUAL_IDENTIFIER_EXPANSION='✔'
-  typeset -g POWERLEVEL9K_STATUS_OK_FOREGROUND='#6A5D8B'
   typeset -g POWERLEVEL9K_STATUS_OK_BACKGROUND='#AFC7E8'
 
   # Status when some part of a pipe command fails but the overall exit status is zero. It may look
   # like this: 1|0.
   typeset -g POWERLEVEL9K_STATUS_OK_PIPE=true
   typeset -g POWERLEVEL9K_STATUS_OK_PIPE_VISUAL_IDENTIFIER_EXPANSION='✔'
-  typeset -g POWERLEVEL9K_STATUS_OK_PIPE_FOREGROUND='#6A5D8B'
   typeset -g POWERLEVEL9K_STATUS_OK_PIPE_BACKGROUND='#AFC7E8'
 
   # Status when it's just an error code (e.g., '1'). No need to show it if prompt_char is enabled as
   # it will signify error by turning red.
   typeset -g POWERLEVEL9K_STATUS_ERROR=true
   typeset -g POWERLEVEL9K_STATUS_ERROR_VISUAL_IDENTIFIER_EXPANSION='✘'
-  typeset -g POWERLEVEL9K_STATUS_ERROR_FOREGROUND='#6A5D8B'
   typeset -g POWERLEVEL9K_STATUS_ERROR_BACKGROUND='#AFC7E8'
 
   # Status when the last command was terminated by a signal.
@@ -546,19 +438,16 @@
   # Use terse signal names: "INT" instead of "SIGINT(2)".
   typeset -g POWERLEVEL9K_STATUS_VERBOSE_SIGNAME=false
   typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_VISUAL_IDENTIFIER_EXPANSION='✘'
-  typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_FOREGROUND='#6A5D8B'
   typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_BACKGROUND='#AFC7E8'
 
   # Status when some part of a pipe command fails and the overall exit status is also non-zero.
   # It may look like this: 1|0.
   typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE=true
   typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_VISUAL_IDENTIFIER_EXPANSION='✘'
-  typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_FOREGROUND='#6A5D8B'
   typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_BACKGROUND='#AFC7E8'
 
   ###################[ command_execution_time: duration of the last command ]###################
   # Execution time color.
-  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND='#6A5D8B'
   typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND='#9FB8C8'
   # Show duration of the last command if takes at least this many seconds.
   typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=3
@@ -573,7 +462,6 @@
 
   #######################[ background_jobs: presence of background jobs ]#######################
   # Background jobs color.
-  typeset -g POWERLEVEL9K_BACKGROUND_JOBS_FOREGROUND='#6A5D8B'
   typeset -g POWERLEVEL9K_BACKGROUND_JOBS_BACKGROUND='#A7C7B1'
   # Don't show the number of background jobs.
   typeset -g POWERLEVEL9K_BACKGROUND_JOBS_VERBOSE=false
@@ -582,7 +470,6 @@
 
   #######################[ direnv: direnv status (https://direnv.net/) ]########################
   # Direnv color.
-  typeset -g POWERLEVEL9K_DIRENV_FOREGROUND='#6A5D8B'
   typeset -g POWERLEVEL9K_DIRENV_BACKGROUND='#A7C7B1'
   # Custom icon.
   # typeset -g POWERLEVEL9K_DIRENV_VISUAL_IDENTIFIER_EXPANSION='⭐'
@@ -757,7 +644,6 @@
 
   #################[ ranger: ranger shell (https://github.com/ranger/ranger) ]##################
   # Ranger shell color.
-  typeset -g POWERLEVEL9K_RANGER_FOREGROUND=3
   typeset -g POWERLEVEL9K_RANGER_BACKGROUND=0
   # Custom icon.
   typeset -g POWERLEVEL9K_RANGER_VISUAL_IDENTIFIER_EXPANSION='▲'
@@ -792,14 +678,12 @@
 
   ###########################[ vim_shell: vim shell indicator (:sh) ]###########################
   # Vim shell indicator color.
-  typeset -g POWERLEVEL9K_VIM_SHELL_FOREGROUND=0
   typeset -g POWERLEVEL9K_VIM_SHELL_BACKGROUND=2
   # Custom icon.
   # typeset -g POWERLEVEL9K_VIM_SHELL_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
   ######[ midnight_commander: midnight commander shell (https://midnight-commander.org/) ]######
   # Midnight Commander shell color.
-  typeset -g POWERLEVEL9K_MIDNIGHT_COMMANDER_FOREGROUND=3
   typeset -g POWERLEVEL9K_MIDNIGHT_COMMANDER_BACKGROUND=0
   # Custom icon.
   # typeset -g POWERLEVEL9K_MIDNIGHT_COMMANDER_VISUAL_IDENTIFIER_EXPANSION='⭐'
@@ -890,7 +774,6 @@
 
   ################[ todo: todo items (https://github.com/todotxt/todo.txt-cli) ]################
   # Todo color.
-  typeset -g POWERLEVEL9K_TODO_FOREGROUND=0
   typeset -g POWERLEVEL9K_TODO_BACKGROUND=8
   # Hide todo when the total number of tasks is zero.
   typeset -g POWERLEVEL9K_TODO_HIDE_ZERO_TOTAL=true
@@ -915,7 +798,6 @@
 
   ###########[ timewarrior: timewarrior tracking status (https://timewarrior.net/) ]############
   # Timewarrior color.
-  typeset -g POWERLEVEL9K_TIMEWARRIOR_FOREGROUND=255
   typeset -g POWERLEVEL9K_TIMEWARRIOR_BACKGROUND=8
 
   # If the tracked task is longer than 24 characters, truncate and append "…".
@@ -929,7 +811,6 @@
 
   ##############[ taskwarrior: taskwarrior task count (https://taskwarrior.org/) ]##############
   # Taskwarrior color.
-  typeset -g POWERLEVEL9K_TASKWARRIOR_FOREGROUND=0
   typeset -g POWERLEVEL9K_TASKWARRIOR_BACKGROUND=6
 
   # Taskwarrior segment format. The following parameters are available within the expansion.
@@ -950,9 +831,7 @@
 
   ######[ per_directory_history: Oh My Zsh per-directory-history local/global indicator ]#######
   # Color when using local/global history.
-  typeset -g POWERLEVEL9K_PER_DIRECTORY_HISTORY_LOCAL_FOREGROUND=0
   typeset -g POWERLEVEL9K_PER_DIRECTORY_HISTORY_LOCAL_BACKGROUND=5
-  typeset -g POWERLEVEL9K_PER_DIRECTORY_HISTORY_GLOBAL_FOREGROUND=0
   typeset -g POWERLEVEL9K_PER_DIRECTORY_HISTORY_GLOBAL_BACKGROUND=3
 
   # Tip: Uncomment the next two lines to hide "local"/"global" text and leave just the icon.
@@ -977,13 +856,10 @@
 
   ##################################[ context: user@hostname ]##################################
   # Context color when running with privileges.
-  typeset -g POWERLEVEL9K_CONTEXT_ROOT_FOREGROUND='#6A5D8B'
   typeset -g POWERLEVEL9K_CONTEXT_ROOT_BACKGROUND='#F2B6C8'
   # Context color in SSH without privileges.
-  typeset -g POWERLEVEL9K_CONTEXT_{REMOTE,REMOTE_SUDO}_FOREGROUND='#6A5D8B'
   typeset -g POWERLEVEL9K_CONTEXT_{REMOTE,REMOTE_SUDO}_BACKGROUND='#F2B6C8'
   # Default context color (no privileges, no SSH).
-  typeset -g POWERLEVEL9K_CONTEXT_FOREGROUND='#6A5D8B'
   typeset -g POWERLEVEL9K_CONTEXT_BACKGROUND='#F2B6C8'
 
   # Context format when running with privileges: user@hostname.
@@ -1018,7 +894,6 @@
 
   #####################[ anaconda: conda environment (https://conda.io/) ]######################
   # Anaconda environment color.
-  typeset -g POWERLEVEL9K_ANACONDA_FOREGROUND='#6A5D8B'
   typeset -g POWERLEVEL9K_ANACONDA_BACKGROUND='#A7C7B1'
 
   # Anaconda segment format. The following parameters are available within the expansion.
@@ -1052,7 +927,6 @@
 
   ################[ pyenv: python environment (https://github.com/pyenv/pyenv) ]################
   # Pyenv color.
-  typeset -g POWERLEVEL9K_PYENV_FOREGROUND='#6A5D8B'
   typeset -g POWERLEVEL9K_PYENV_BACKGROUND='#AFC7E8'
   # Hide python version if it doesn't come from one of these sources.
   typeset -g POWERLEVEL9K_PYENV_SOURCES=(shell local global)
@@ -1653,7 +1527,6 @@
 
   ##############[ toolbox: toolbox name (https://github.com/containers/toolbox) ]###############
   # Toolbox color.
-  typeset -g POWERLEVEL9K_TOOLBOX_FOREGROUND=0
   typeset -g POWERLEVEL9K_TOOLBOX_BACKGROUND=3
   # Don't display the name of the toolbox if it matches fedora-toolbox-*.
   typeset -g POWERLEVEL9K_TOOLBOX_CONTENT_EXPANSION='${P9K_TOOLBOX_NAME:#fedora-toolbox-*}'
@@ -1711,7 +1584,6 @@
 
   #########################[ proxy: system-wide http/https/ftp proxy ]##########################
   # Proxy color.
-  typeset -g POWERLEVEL9K_PROXY_FOREGROUND='#6A5D8B'
   typeset -g POWERLEVEL9K_PROXY_BACKGROUND='#9FB8C8'
   # Custom icon.
   # typeset -g POWERLEVEL9K_PROXY_VISUAL_IDENTIFIER_EXPANSION='⭐'
@@ -1759,7 +1631,6 @@
 
   ####################################[ time: current time ]####################################
   # Current time color.
-  typeset -g POWERLEVEL9K_TIME_FOREGROUND='#6A5D8B'
   typeset -g POWERLEVEL9K_TIME_BACKGROUND='#B5A6D6'
   # Format for the current time: 09:51:02. See `man 3 strftime`.
   typeset -g POWERLEVEL9K_TIME_FORMAT='%D{%H:%M:%S}'
@@ -1833,8 +1704,166 @@
   # really need it.
   typeset -g POWERLEVEL9K_DISABLE_HOT_RELOAD=true
 
-  # If p10k is already loaded, reload configuration.
-  # This works even with POWERLEVEL9K_DISABLE_HOT_RELOAD=true.
+    # ===== Minimal cute pastel text-only override =====
+
+  # 1) 精简段落：左边=conda/ssh上下文/目录/git；右边=时间
+  typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+    # =========================[ Line #1 ]=========================
+    anaconda                # conda environment (https://conda.io/)
+    # virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
+    context                 # user@hostname
+    # os_icon               # os identifier
+    dir                     # current directory
+    vcs                     # git status
+    # =========================[ Line #2 ]=========================
+    newline                 # \n
+    prompt_char           # prompt symbol
+  )
+
+  # The list of segments shown on the right. Fill it with less important segments.
+  # Right prompt on the last prompt line (where you are typing your commands) gets
+  # automatically hidden when the input line reaches it. Right prompt above the
+  # last prompt line gets hidden if it would overlap with left prompt.
+  typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
+    # =========================[ Line #1 ]=========================
+    status                  # exit code of the last command
+    command_execution_time  # duration of the last command
+    background_jobs         # presence of background jobs
+    direnv                  # direnv status (https://direnv.net/)
+    # asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
+    pyenv                   # python environment (https://github.com/pyenv/pyenv)
+    # goenv                   # go environment (https://github.com/syndbg/goenv)
+    # nodenv                  # node.js version from nodenv (https://github.com/nodenv/nodenv)
+    # nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
+    # nodeenv                 # node.js environment (https://github.com/ekalinin/nodeenv)
+    # node_version          # node.js version
+    # go_version            # go version (https://golang.org)
+    # rust_version          # rustc version (https://www.rust-lang.org)
+    # dotnet_version        # .NET version (https://dotnet.microsoft.com)
+    # php_version           # php version (https://www.php.net/)
+    # laravel_version       # laravel php framework version (https://laravel.com/)
+    # java_version          # java version (https://www.java.com/)
+    # package               # name@version from package.json (https://docs.npmjs.com/files/package.json)
+    # rbenv                   # ruby version from rbenv (https://github.com/rbenv/rbenv)
+    # rvm                     # ruby version from rvm (https://rvm.io)
+    # fvm                     # flutter version management (https://github.com/leoafarias/fvm)
+    # luaenv                  # lua version from luaenv (https://github.com/cehoffman/luaenv)
+    # jenv                    # java version from jenv (https://github.com/jenv/jenv)
+    # plenv                   # perl version from plenv (https://github.com/tokuhirom/plenv)
+    # perlbrew                # perl version from perlbrew (https://github.com/gugod/App-perlbrew)
+    # phpenv                  # php version from phpenv (https://github.com/phpenv/phpenv)
+    # scalaenv                # scala version from scalaenv (https://github.com/scalaenv/scalaenv)
+    # haskell_stack           # haskell version from stack (https://haskellstack.org/)
+    # kubecontext             # current kubernetes context (https://kubernetes.io/)
+    # terraform               # terraform workspace (https://www.terraform.io)
+    # terraform_version     # terraform version (https://www.terraform.io)
+    # aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
+    # aws_eb_env              # aws elastic beanstalk environment (https://aws.amazon.com/elasticbeanstalk/)
+    # azure                   # azure account name (https://docs.microsoft.com/en-us/cli/azure)
+    # gcloud                  # google cloud cli account and project (https://cloud.google.com/)
+    # google_app_cred         # google application credentials (https://cloud.google.com/docs/authentication/production)
+    toolbox                 # toolbox name (https://github.com/containers/toolbox)
+    # nordvpn                 # nordvpn connection status, linux only (https://nordvpn.com/)
+    ranger                  # ranger shell (https://github.com/ranger/ranger)
+    # yazi                    # yazi shell (https://github.com/sxyazi/yazi)
+    # nnn                     # nnn shell (https://github.com/jarun/nnn)
+    # lf                      # lf shell (https://github.com/gokcehan/lf)
+    # xplr                    # xplr shell (https://github.com/sayanarijit/xplr)
+    vim_shell               # vim shell indicator (:sh)
+    midnight_commander      # midnight commander shell (https://midnight-commander.org/)
+    # nix_shell               # nix shell (https://nixos.org/nixos/nix-pills/developing-with-nix-shell.html)
+    # chezmoi_shell           # chezmoi shell (https://www.chezmoi.io/)
+    # vi_mode                 # vi mode (you don't need this if you've enabled prompt_char)
+    # vpn_ip                # virtual private network indicator
+    # load                  # CPU load
+    # disk_usage            # disk usage
+    # ram                   # free RAM
+    # swap                  # used swap
+    todo                    # todo items (https://github.com/todotxt/todo.txt-cli)
+    timewarrior             # timewarrior tracking status (https://timewarrior.net/)
+    taskwarrior             # taskwarrior task count (https://taskwarrior.org/)
+    per_directory_history   # Oh My Zsh per-directory-history local/global indicator
+    # cpu_arch              # CPU architecture
+    time                    # current time
+    # =========================[ Line #2 ]=========================
+    newline
+    # ip                    # ip address and bandwidth usage for a specified network interface
+    # public_ip             # public IP address
+    proxy                 # system-wide http/https/ftp proxy
+    # battery               # internal battery
+    # wifi                  # wifi speed
+    # example               # example user-defined segment (see prompt_example function below)
+  )
+
+  # 2) 不要 powerline 那些箭头/硬分割，全部用轻分隔
+  typeset -g POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR='  '
+  typeset -g POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR='  '
+  typeset -g POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR=' > '
+  typeset -g POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR=' < '
+
+  # 3) 重要：这些符号不要设成空格！空格会产生奇怪的“空白块感”
+  typeset -g POWERLEVEL9K_LEFT_PROMPT_FIRST_SEGMENT_START_SYMBOL=''
+  typeset -g POWERLEVEL9K_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL=''
+  typeset -g POWERLEVEL9K_RIGHT_PROMPT_FIRST_SEGMENT_START_SYMBOL=''
+  typeset -g POWERLEVEL9K_RIGHT_PROMPT_LAST_SEGMENT_END_SYMBOL=''
+
+  # 4) 去掉“框架线”（你现在的 ╭─ ├─ ╰─ 那些），更清爽
+  typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX='╭─'
+  typeset -g POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_PREFIX='├─'
+  typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='╰─'
+  typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_CHAR=' '
+
+  # 5) 全透明背景：空 = 透明；0 = 黑色（千万别用 0 当透明）
+  typeset -g POWERLEVEL9K_BACKGROUND=
+  for p in ${(k)parameters[(I)POWERLEVEL9K_*_BACKGROUND]}; do
+    typeset -g $p=
+  done
+
+  # 6) 低饱和“可爱”前景色（truecolor；你也可以换成 256 色）
+  typeset -g POWERLEVEL9K_ANACONDA_FOREGROUND='#8FBFA7'   # 薄荷绿
+  typeset -g POWERLEVEL9K_CONTEXT_FOREGROUND='#E6A5C4'    # 柔粉
+  typeset -g POWERLEVEL9K_CONTEXT_ROOT_FOREGROUND='#E6A5C4'
+  typeset -g POWERLEVEL9K_CONTEXT_{REMOTE,REMOTE_SUDO}_FOREGROUND='#E6A5C4'
+  typeset -g POWERLEVEL9K_DIR_FOREGROUND='#9DB7D5'        # 雾蓝
+  typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND='#9DB7D5'
+  typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND='#9DB7D5'
+
+  typeset -g POWERLEVEL9K_VCS_CLEAN_FOREGROUND='#B8C7D8'
+  typeset -g POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='#E6A5C4'
+  typeset -g POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='#E8B6CF'
+  typeset -g POWERLEVEL9K_VCS_CONFLICTED_FOREGROUND='#E38A8A'
+  typeset -g POWERLEVEL9K_VCS_LOADING_FOREGROUND='#AFC7E8'
+
+  typeset -g POWERLEVEL9K_STATUS_OK_FOREGROUND='#E6A5C4'
+  typeset -g POWERLEVEL9K_STATUS_OK_PIPE_FOREGROUND='#E6A5C4'
+  typeset -g POWERLEVEL9K_STATUS_ERROR_FOREGROUND='#E38A8A'
+  typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_FOREGROUND='#E38A8A'
+  typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_FOREGROUND='#E38A8A'
+
+  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND='#AFC7E8'
+  typeset -g POWERLEVEL9K_BACKGROUND_JOBS_FOREGROUND='#8FBFA7'
+  typeset -g POWERLEVEL9K_DIRENV_FOREGROUND='#9DB7D5'
+  typeset -g POWERLEVEL9K_PYENV_FOREGROUND='#E8B6CF'
+  typeset -g POWERLEVEL9K_TOOLBOX_FOREGROUND='#B8C7D8'
+  typeset -g POWERLEVEL9K_RANGER_FOREGROUND='#E6A5C4'
+  typeset -g POWERLEVEL9K_VIM_SHELL_FOREGROUND='#9DB7D5'
+  typeset -g POWERLEVEL9K_MIDNIGHT_COMMANDER_FOREGROUND='#E8B6CF'
+  typeset -g POWERLEVEL9K_TODO_FOREGROUND='#AFC7E8'
+  typeset -g POWERLEVEL9K_TIMEWARRIOR_FOREGROUND='#E6A5C4'
+  typeset -g POWERLEVEL9K_TASKWARRIOR_FOREGROUND='#8FBFA7'
+  typeset -g POWERLEVEL9K_PER_DIRECTORY_HISTORY_LOCAL_FOREGROUND='#B8C7D8'
+  typeset -g POWERLEVEL9K_PER_DIRECTORY_HISTORY_GLOBAL_FOREGROUND='#9DB7D5'
+
+  typeset -g POWERLEVEL9K_PROXY_FOREGROUND='#AFC7E8'
+
+  typeset -g POWERLEVEL9K_TIME_FOREGROUND='#E6A5C4'
+
+  # prompt 符号：成功=淡粉，失败=柔红
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND='#E6A5C4'
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND='#E38A8A'
+
+  # ===== End override =====
+
   (( ! $+functions[p10k] )) || p10k reload
 }
 
