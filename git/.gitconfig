@@ -6,3 +6,49 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[init]
+    defaultBranch = main
+# ---- 基础行为：更安全、更少坑 ----
+[core]
+    editor = code --wait
+    autocrlf = input
+    safecrlf = warn
+    ignorecase = false
+    pager = less -FRX
+[pull]
+    rebase = false
+[rebase]
+    autoStash = false
+[fetch]
+    prune = true
+    pruneTags = true
+[gc]
+    auto = 256
+[push]
+    default = simple
+    autoSetupRemote = true
+# ---- 输出与可读性 ----
+[color]
+    ui = auto
+[branch]
+    sort = -committerdate
+[log]
+    date = iso
+# ---- 合并冲突体验：更好读 ----
+[merge]
+    conflictstyle = diff3
+[diff]
+    algorithm = histogram
+    colorMoved = default
+    mnemonicPrefix = true
+    renames = true
+# ---- 常用 alias：少敲很多字 ----
+[alias]
+    st = status -sb
+    co = checkout
+    sw = switch
+    br = branch
+    lg = log --graph --decorate --oneline --all
+    last = log -1 --stat
+    unstage = restore --staged --
+    who = shortlog -sn --no-merges
