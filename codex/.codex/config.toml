@@ -1,2 +1,30 @@
 model = "gpt-5.2"
 model_reasoning_effort = "high"
+
+# 让输出更干净
+personality = "pragmatic"
+model_reasoning_summary = "concise"   # 或 "none"
+model_verbosity = "high"
+hide_agent_reasoning = true
+
+# 三件套：权限 + 询问策略 + 搜索
+sandbox_mode = "workspace-write"
+approval_policy = "on-request"
+web_search = "live" 
+
+[history]
+persistence = "save-all"              # 不想留痕就改 "none"
+max_bytes = 104857600                 # 100MB，超过丢最旧记录
+
+# workspace-write 里要不要允许联网（默认开）
+[sandbox_workspace_write]
+network_access = true
+# 需要额外可写目录再加（例如数据盘上的项目）
+# writable_roots = ["/data2/lhy/project", "/data3/lhy/project"]
+
+# 凭据存储（更建议 keyring）
+cli_auth_credentials_store = "keyring"
+mcp_oauth_credentials_store = "keyring"
+
+# 如果你点“引用/打开文件”希望走 VS Code
+file_opener = "vscode"
