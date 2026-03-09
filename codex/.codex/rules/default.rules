@@ -1,0 +1,56 @@
+# 常见安全命令：直接放行
+prefix_rule(
+    pattern = ["ls"],
+    decision = "allow",
+    justification = "Safe listing command.",
+)
+prefix_rule(
+    pattern = ["find"],
+    decision = "allow",
+    justification = "Safe search command.",
+)
+prefix_rule(
+    pattern = ["rg"],
+    decision = "allow",
+    justification = "Safe search command.",
+)
+prefix_rule(
+    pattern = ["grep"],
+    decision = "allow",
+    justification = "Safe search command.",
+)
+prefix_rule(
+    pattern = ["cat"],
+    decision = "allow",
+    justification = "Safe read-only command.",
+)
+prefix_rule(
+    pattern = ["head"],
+    decision = "allow",
+    justification = "Safe read-only command.",
+)
+prefix_rule(
+    pattern = ["tail"],
+    decision = "allow",
+    justification = "Safe read-only command.",
+)
+prefix_rule(pattern=["pdftotext", "-f"], decision="allow")
+prefix_rule(pattern=["sort"], decision="allow")
+
+# 危险命令：一律提示
+prefix_rule(
+    pattern = ["rm"],
+    decision = "prompt",
+    justification = "Deleting files should always require confirmation.",
+)
+prefix_rule(
+    pattern = ["sudo"],
+    decision = "prompt",
+    justification = "Privilege escalation should always require confirmation.",
+)
+# 更狠一点的删目录，也一律提示
+prefix_rule(
+    pattern = ["rm", ["-rf", "-fr", "-r", "-f"]],
+    decision = "prompt",
+    justification = "Potentially destructive deletion should always require confirmation.",
+)
