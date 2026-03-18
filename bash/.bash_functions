@@ -316,3 +316,19 @@ tsbd() {
     echo "启动tensorboard: --logdir=$TB_DIR --port=$PORT --bind_all"
     tensorboard --logdir="$TB_DIR" --port=$PORT --bind_all
 }
+# 自定义函数：快速查看指定目录下大于100M的文件
+# 用法: f100 待检测文件夹路径
+f100() {
+    if [ -z "$1" ]; then
+        echo "错误: 需要提供待检测文件夹路径"
+        echo "用法: f100 待检测文件夹路径"
+        return 1
+    fi
+    
+    if [ ! -d "$1" ]; then
+        echo "错误: 文件夹 '$1' 不存在"
+        return 1
+    fi
+
+    find "$1" -type f -size +100M -exec du -h {} +
+}
